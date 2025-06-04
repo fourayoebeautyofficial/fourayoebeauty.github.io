@@ -1,10 +1,114 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="refresh" content="0; url=home.html" />
+    <meta http-equiv="refresh" content="5; url=home.html" />
     <title>Redirecting...</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f0f4f8;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .redirect-container {
+        text-align: center;
+        padding: 40px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        max-width: 450px;
+        width: 90%;
+        animation: fadeIn 1s ease-in-out;
+      }
+
+      h1 {
+        color: #28a745;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        animation: slideInFromTop 0.8s ease-out;
+      }
+
+      p {
+        color: #333;
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+        animation: fadeIn 1.2s ease-out;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+        animation: fadeIn 1.5s ease-out;
+      }
+
+      a:hover {
+        color: #0056b3;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInFromTop {
+        0% {
+          transform: translateY(-30px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Responsiveness */
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .redirect-container {
+          padding: 20px;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 1.6rem;
+        }
+
+        .redirect-container {
+          padding: 15px;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    If you are not redirected automatically, <a href="home.html">click here</a>.
+    <div class="redirect-container">
+      <h1>Redirecting...</h1>
+      <p>If you are not redirected automatically, <a href="home.html">click here</a>.</p>
+    </div>
   </body>
 </html>
