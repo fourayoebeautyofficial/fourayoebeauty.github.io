@@ -18,6 +18,13 @@ body {
     color: #4B4B4B; /* Slightly darker gray for better contrast */
 }
 
+.text-gray-700 {
+    font-size: 14px;
+    color: #333;
+    margin-left: 10px;  /* Memberikan jarak antara ikon dan teks */
+    margin-top: 8px;    /* Geser teks sedikit ke bawah */
+}
+
 .text-4xl {
     font-size: 2.25rem; /* Adjusted to be slightly larger for better impact */
 }
