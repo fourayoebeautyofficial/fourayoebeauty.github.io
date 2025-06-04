@@ -180,135 +180,75 @@ document.onkeydown = function(e) {
     }
 };
 
-// Manual Slide Effect for Mobile Product Grid
-document.addEventListener('DOMContentLoaded', function() {
-    // Check for mobile device (width less than 768px)
-    if (window.innerWidth <= 768) {
-        const products = document.querySelectorAll('.product-card');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        let swipeStartX = 0;
-        let swipeEndX = 0;
-
-        // Define the width of each card for swipe and scrolling purposes
-        const cardWidth = products[0].offsetWidth + 20;  // 20px for margin between cards
-
-        // Function to move to the next product
-        const moveToNext = () => {
-            const currentScroll = document.querySelector('.tab-content.active').scrollLeft;
-            document.querySelector('.tab-content.active').scrollLeft = currentScroll + cardWidth;
-        };
-
-        // Function to move to the previous product
-        const moveToPrevious = () => {
-            const currentScroll = document.querySelector('.tab-content.active').scrollLeft;
-            document.querySelector('.tab-content.active').scrollLeft = currentScroll - cardWidth;
-        };
-
-        // Swipe functionality
-        document.querySelector('.tab-content.active').addEventListener('touchstart', (e) => {
-            swipeStartX = e.touches[0].pageX;
-        });
-
-        document.querySelector('.tab-content.active').addEventListener('touchend', (e) => {
-            swipeEndX = e.changedTouches[0].pageX;
-
-            // Detect swipe direction
-            if (swipeStartX - swipeEndX > 50) {  // Swiped left
-                moveToNext();
-            } else if (swipeEndX - swipeStartX > 50) {  // Swiped right
-                moveToPrevious();
-            }
-        });
-
-        // Enable drag-to-scroll
-        document.querySelector('.tab-content.active').addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - document.querySelector('.tab-content.active').offsetLeft;
-            scrollLeft = document.querySelector('.tab-content.active').scrollLeft;
-        });
-
-        document.querySelector('.tab-content.active').addEventListener('mouseleave', () => {
-            isDown = false;
-        });
-
-        document.querySelector('.tab-content.active').addEventListener('mouseup', () => {
-            isDown = false;
-        });
-
-        document.querySelector('.tab-content.active').addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - document.querySelector('.tab-content.active').offsetLeft;
-            const walk = (x - startX) * 3; // Adjust drag speed
-            document.querySelector('.tab-content.active').scrollLeft = scrollLeft - walk;
-        });
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Check for mobile device (width less than 768px)
-    if (window.innerWidth <= 768) {
+// Mobile Product Slider (Swiper-Like Swiping and Dragging)
+document.addEventListener('DOMContentLoaded', function () {
+      if (window.innerWidth <= 768) {  // Mobile viewport
         const tabContent = document.querySelector('.tab-content.active');
-        let isDown = false;
+        const products = document.querySelectorAll('.product-card');
+        let isDown = false;  // Track mouse drag status
         let startX;
         let scrollLeft;
-        let swipeStartX = 0;
-        let swipeEndX = 0;
 
-        // Define the width of each card for swipe and scrolling purposes
-        const cardWidth = document.querySelector('.product-card').offsetWidth + 20;  // 20px for margin between cards
+        const productWidth = products[0].offsetWidth + 20;  // Product width + margin
 
-        // Function to jump to the next product
+        // Function to enable smooth swiping through products
         const moveToNext = () => {
-            const currentScroll = tabContent.scrollLeft;
-            tabContent.scrollLeft = currentScroll + cardWidth; // Jump to the next product
+          tabContent.scrollBy({
+            left: productWidth,  // Move to the next product (consider product width + margin)
+            behavior: 'smooth',  // Enable smooth scroll
+          });
         };
 
-        // Function to jump to the previous product
         const moveToPrevious = () => {
-            const currentScroll = tabContent.scrollLeft;
-            tabContent.scrollLeft = currentScroll - cardWidth; // Jump to the previous product
+          tabContent.scrollBy({
+            left: -productWidth,  // Move to the previous product (negative movement)
+            behavior: 'smooth',  // Enable smooth scroll
+          });
         };
 
         // Swipe functionality to move between products
+        let swipeStartX = 0;
+        let swipeEndX = 0;
+
         tabContent.addEventListener('touchstart', (e) => {
-            swipeStartX = e.touches[0].pageX;
+          swipeStartX = e.touches[0].pageX;
         });
 
         tabContent.addEventListener('touchend', (e) => {
-            swipeEndX = e.changedTouches[0].pageX;
+          swipeEndX = e.changedTouches[0].pageX;
 
-            // Detect swipe direction
-            if (swipeStartX - swipeEndX > 50) {  // Swiped left
-                moveToNext();
-            } else if (swipeEndX - swipeStartX > 50) {  // Swiped right
-                moveToPrevious();
-            }
+          // Detect swipe direction (left or right)
+          if (swipeStartX - swipeEndX > 50) {  // Swiped left
+            moveToNext();
+          } else if (swipeEndX - swipeStartX > 50) {  // Swiped right
+            moveToPrevious();
+          }
         });
 
-        // Enable drag-to-scroll functionality for mouse
+        // Mouse Drag functionality (for desktop users)
         tabContent.addEventListener('mousedown', (e) => {
-            isDown = true;
-            startX = e.pageX - tabContent.offsetLeft;
-            scrollLeft = tabContent.scrollLeft;
+          isDown = true;
+          startX = e.pageX - tabContent.offsetLeft;
+          scrollLeft = tabContent.scrollLeft;
+          tabContent.style.transition = 'none';  // Disable transition during dragging
         });
 
         tabContent.addEventListener('mouseleave', () => {
-            isDown = false;
+          isDown = false;
         });
 
         tabContent.addEventListener('mouseup', () => {
-            isDown = false;
+          isDown = false;
         });
 
         tabContent.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - tabContent.offsetLeft;
-            const walk = (x - startX) * 3; // Adjust drag speed
-            tabContent.scrollLeft = scrollLeft - walk;
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - tabContent.offsetLeft;
+          const walk = (x - startX) * 3;  // Adjust the drag speed
+          tabContent.scrollLeft = scrollLeft - walk;
         });
-    }
-});
+
+        // Initializing the scroll position (no need to set anything specific here)
+      }
+    });
