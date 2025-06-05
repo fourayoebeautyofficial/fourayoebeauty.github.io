@@ -106,7 +106,7 @@ const counters = document.querySelectorAll('.count');
         counter.innerText = current + increment;
         requestAnimationFrame(update);
         } else {
-        counter.innerText = target + (counter.dataset.target === "24" ? "/7" : counter.dataset.target === "5" ? "+" : counter.dataset.target === "50" ? "+" : "%");
+        counter.innerText = target + (counter.dataset.target === "24" ? "/7" : counter.dataset.target === "3" ? "+" : counter.dataset.target === "50" ? "+" : "%");
         }
     };
 
@@ -182,7 +182,7 @@ document.onkeydown = function(e) {
 
 // Mobile Product Slider (Swiper-Like Swiping and Dragging)
 document.addEventListener('DOMContentLoaded', function () {
-      if (window.innerWidth <= 768) {  // Mobile viewport
+    if (window.innerWidth <= 768) {  // Mobile viewport
         const tabContent = document.querySelector('.tab-content.active');
         const products = document.querySelectorAll('.product-card');
         let isDown = false;  // Track mouse drag status
@@ -249,6 +249,6 @@ document.addEventListener('DOMContentLoaded', function () {
           tabContent.scrollLeft = scrollLeft - walk;
         });
 
-        // Initializing the scroll position (no need to set anything specific here)
-      }
-    });
+        // Initialize scroll position (no need to set anything specific here)
+    }
+});
