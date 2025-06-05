@@ -562,14 +562,16 @@ body {
         flex-wrap: nowrap; /* Ensure product cards are in a single row */
         gap: 15px;         /* Space between product cards */
         overflow-x: auto;  /* Allow horizontal scrolling */
-        scroll-snap-type: x mandatory; /* Enable horizontal scroll snapping */
+        scroll-snap-type: both mandatory; /* Enable horizontal scroll snapping */
         -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
     }
 
+    /* Individual product cards */
     .product-card {
-        flex: 0 0 auto;     /* Prevent the cards from shrinking or growing */
-        width: 280px;       /* Adjust width for each product card */
-        scroll-snap-align: start; /* Ensure each card snaps to the start */
+        flex: 0 0 auto;                   /* Prevent wrapping, keep products in one line */
+        width: 280px;                     /* Adjust product card width */
+        margin-right: 20px;               /* Space between product cards */
+        position: relative;
     }
 
     /* Optional: Style the scrollbar */
