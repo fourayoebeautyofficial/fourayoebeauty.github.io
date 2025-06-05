@@ -388,6 +388,7 @@ body {
     .product-card {
         margin: 10px;
         padding: 15px;
+        width: 280px;  /* Atur lebar produk agar konsisten di tablet dan mobile */
     }
 
     /* Text Sizes */
@@ -430,6 +431,83 @@ body {
     .menu-link {
         padding: 12px;
         font-size: 16px;
+    }
+    .tab-content {
+        overflow-x: auto;  /* Allow horizontal scroll */
+        scroll-behavior: auto; /* Remove smooth scrolling for jump effect */
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 16px;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    
+    .tab-content .grid {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 16px;
+        padding: 0px;
+        margin-bottom: 20px;
+    }
+    
+    .tab-content .product-card {
+        min-width: 320px;
+        flex-shrink: 0;
+        margin: 0 10px; /* Add a little margin around each product card */
+        transition: transform 0.4s ease; 
+    }
+    
+    /* Hide scrollbar but keep functionality */
+    .tab-content::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .tab-content {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Container for the tab-content that holds the products */
+    .tab-content.active {
+        display: flex;                    /* Align product cards in a row */
+        overflow-x: auto;                 /* Allow horizontal scrolling */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+        scroll-behavior: smooth;          /* Smooth scrolling */
+        width: 100%;                      /* Ensure it takes full width */
+        padding-bottom: 10px;             /* Small space at the bottom */
+    }
+
+    .product-container {
+        display: flex;
+        flex-wrap: nowrap; /* Ensure product cards are in a single row */
+        gap: 15px;         /* Space between product cards */
+        overflow-x: auto;  /* Allow horizontal scrolling */
+        scroll-snap-type: x mandatory; /* Enable horizontal scroll snapping */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Individual product cards */
+    .product-card {
+        flex: 0 0 auto;                   /* Prevent wrapping, keep products in one line */
+        width: 280px;                     /* Adjust product card width */
+        margin-right: 20px;               /* Space between product cards */
+        position: relative;
+    }
+
+    /* Optional: Style the scrollbar */
+    .tab-content.active::-webkit-scrollbar {
+        height: 8px;
+    }
+
+    .tab-content.active::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    .tab-content.active::-webkit-scrollbar-track {
+        background: #f1f1f1;
     }
 }
 
