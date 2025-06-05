@@ -391,6 +391,10 @@ body {
         width: 280px;  /* Atur lebar produk agar konsisten di tablet dan mobile */
     }
 
+    .product-image {
+        object-fit: contain; /* Ensure the image fits inside the container without cropping on smaller screens */
+    }
+
     /* Text Sizes */
     .text-4xl {
         font-size: 1.75rem;  /* Slightly smaller font for mobile */
