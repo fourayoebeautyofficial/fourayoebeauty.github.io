@@ -392,7 +392,7 @@ body {
     }
 
     .product-image {
-        object-fit: contain; /* Ensure the image fits inside the container without cropping on smaller screens */
+        object-fit: cover ; /* Ensure the image fits inside the container without cropping on smaller screens */
     }
 
     /* Text Sizes */
