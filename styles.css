@@ -377,252 +377,138 @@ body {
     transform: rotate(45deg); /* Optional: Rotate the icon when hovering */
 }
 
-/* Adjust for Larger Screens (MacBook Air Screen Width) */
-@media (min-width: 1024px) and (max-width: 1440px) {
-    /* Hero Section */
-    .hero-section {
-        background: linear-gradient(135deg, var(--secondary) 0%, white 100%);
-        padding: 50px 20px;
-    }
-
-    .hero-section::before {
-        top: -30%;
-        right: -30%;
-    }
-
-    /* Product Card Grid */
+/* Responsive Layout for Mobile and Tablets */
+@media (max-width: 768px) {
+    /* Mobile View */
     .product-container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);  /* 3 columns for MacBook Air */
-        gap: 20px;
-        margin-bottom: 20px;
+        grid-template-columns: repeat(2, 1fr);  /* 2 columns on smaller screens */
     }
 
+    /* Product Card Adjustment */
     .product-card {
-        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-        position: relative;
-        overflow: hidden;
-        border-radius: 12px;
-        background: white;
-        min-height: 380px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
         margin: 10px;
-        padding: 20px;
+        padding: 15px;
     }
 
-    /* Price Display */
+    /* Text Sizes */
+    .text-4xl {
+        font-size: 1.75rem;  /* Slightly smaller font for mobile */
+    }
+
+    .text-5xl {
+        font-size: 2.5rem;
+    }
+
+    .text-gray-700 {
+        font-size: 12px;
+    }
+
+    /* Adjust Hero Section */
+    .hero-section {
+        padding: 30px 15px;
+    }
+
+    /* Adjust Price Container */
     .price-container {
-        display: flex;
-        align-items: center;
-        gap: 15px;
+        flex-direction: column;
+        gap: 10px;
     }
 
+    /* Buttons */
+    .btn-primary, .btn-outline {
+        padding: 12px 30px;
+    }
+
+    /* Mobile Menu */
+    #mobile-menu {
+        width: 80%;
+        top: 60px;
+        right: 0;
+    }
+
+    /* Mobile Menu Links */
+    .menu-link {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Small Mobile View */
+    .product-container {
+        grid-template-columns: 1fr;  /* 1 column for very small screens */
+    }
+
+    /* Product Cards on Small Screens */
+    .product-card {
+        min-height: 320px;
+        padding: 10px;
+    }
+
+    /* Price Adjustments */
     .price-discount {
-        color: #e74c3c;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .price-original {
-        text-decoration: line-through;
-        color: #888;
         font-size: 16px;
     }
 
     .discount-percent {
-        background-color: #f39c12;
-        color: white;
-        padding: 7px 15px;
-        border-radius: 5px;
-        font-size: 16px;
-        margin-left: 15px;
+        font-size: 12px;
     }
 
-    /* Menu Links */
-    .menu-link {
-        font-size: 16px;
-        padding: 12px 20px;
+    /* Adjust Hero Section */
+    .hero-section {
+        padding: 20px 10px;
+    }
+
+    .text-4xl {
+        font-size: 1.5rem;  /* Adjust for small mobile */
+    }
+
+    .text-5xl {
+        font-size: 2rem;
+    }
+
+    /* Mobile Menu */
+    #mobile-menu {
+        width: 100%;
+        top: 50px;
+        right: 0;
+    }
+
+    /* Adjust Button Padding */
+    .btn-primary, .btn-outline {
+        padding: 10px 25px;
+    }
+
+    /* Adjust Text Sizes for Mobile */
+    .text-gray-700 {
+        font-size: 12px;
+    }
+
+    .logo-scroll-wrapper {
+        padding: 10px;
+    }
+}
+
+/* For Larger Screens (e.g. MacBook, Tablets) */
+@media (min-width: 1024px) {
+    /* Product Card Layout */
+    .product-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    /* Hero Section Adjustments */
+    .hero-section {
+        padding: 50px 20px;
+    }
+
+    .product-card {
+        margin: 15px;
+        padding: 20px;
     }
 
     /* Buttons */
     .btn-primary {
-        background: var(--primary);
-        padding: 12px 30px;
-    }
-
-    .btn-primary:hover {
-        background: #D9A2A6;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(232, 180, 184, 0.4);
-    }
-
-    /* Mobile Menu (on larger screens, the mobile menu will adapt too) */
-    #mobile-menu {
-        width: 300px;
-        top: 50px;
-    }
-
-    /* Tab Content */
-    .tab-content {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 16px;
-        padding: 20px;
-    }
-
-    .product-card {
-        width: 300px;
-    }
-
-    /* Testimonials */
-    .testimonial-card {
-        transition: all 0.3s ease;
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
-    }
-
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-    }
-}
-
-/* Media Query for Tablets (Max-width: 768px) */
-@media (max-width: 768px) {
-    #mobile-menu {
-        width: 200px;  /* Adjust width for smaller screens */
-        top: 50px; /* Adjust top for smaller screens */
-        right: 5px;  /* Adjust right padding for smaller screens */
-    }
-
-    .menu-link {
-        font-size: 14px;  /* Adjust font size for smaller devices */
-        padding: 10px 18px;  /* Adjust padding for better spacing */
-    }
-
-    /* Mobile Menu Button */
-    #mobile-menu-button i {
-        font-size: 24px; /* Adjust icon size for smaller devices */
-    }
-
-    .tab-content {
-        overflow-x: auto;  /* Allow horizontal scroll */
-        scroll-behavior: auto; /* Remove smooth scrolling for jump effect */
-        -webkit-overflow-scrolling: touch;
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 16px;
-        padding: 0;
-        margin-bottom: 20px;
-    }
-    
-    .tab-content .grid {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 16px;
-        padding: 0px;
-        margin-bottom: 20px;
-    }
-    
-    .tab-content .product-card {
-        min-width: 320px;
-        flex-shrink: 0;
-        margin: 0 10px; /* Add a little margin around each product card */
-        transition: transform 0.4s ease; 
-    }
-    
-    /* Hide scrollbar but keep functionality */
-    .tab-content::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .tab-content {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
-
-    /* Container for the tab-content that holds the products */
-    .tab-content.active {
-        display: flex;                    /* Align product cards in a row */
-        overflow-x: auto;                 /* Allow horizontal scrolling */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-        scroll-behavior: smooth;          /* Smooth scrolling */
-        width: 100%;                      /* Ensure it takes full width */
-        padding-bottom: 10px;             /* Small space at the bottom */
-    }
-
-    .product-container {
-        display: flex;
-        flex-wrap: nowrap; /* Ensure product cards are in a single row */
-        gap: 15px;         /* Space between product cards */
-        overflow-x: auto;  /* Allow horizontal scrolling */
-        scroll-snap-type: x mandatory; /* Enable horizontal scroll snapping */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    /* Individual product cards */
-    .product-card {
-        flex: 0 0 auto;                   /* Prevent wrapping, keep products in one line */
-        width: 280px;                     /* Adjust product card width */
-        margin-right: 20px;               /* Space between product cards */
-        position: relative;
-    }
-
-    /* Optional: Style the scrollbar */
-    .tab-content.active::-webkit-scrollbar {
-        height: 8px;
-    }
-
-    .tab-content.active::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-    }
-
-    .tab-content.active::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-
-    .product-card {
-        width: 280px;  /* Atur lebar produk agar konsisten di tablet dan mobile */
-    }
-
-    .discount-percent {
-        font-size: 15px; /* Even smaller font size for mobile */
-        margin-left: 0; /* Remove margin on mobile */
-        margin-top: 5px; /* Add a little space above */
-        padding: 3px 7px; /* Adjust padding for better appearance on mobile */
-    }
-}
-
-/* Media Query for Mobile Devices (Max-width: 480px) */
-@media (max-width: 480px) {
-    #mobile-menu {
-        width: 180px;  /* Adjust width further for small mobile screens */
-    }
-
-    .menu-link {
-        font-size: 12px;  /* Smaller font size for small screens */
-        padding: 8px 16px;  /* Smaller padding */
-    }
-
-    /* Mobile Menu Button */
-    #mobile-menu-button i {
-        font-size: 20px; /* Adjust icon size for mobile */
-    }
-
-    .discount-percent {
-        font-size: 15px; /* Even smaller font size for mobile */
-        margin-left: 0; /* Remove margin on mobile */
-        margin-top: 5px; /* Add a little space above */
-        padding: 3px 7px; /* Adjust padding for better appearance on mobile */
+        padding: 15px 35px;
     }
 }
 
