@@ -555,7 +555,17 @@ body {
         scroll-behavior: smooth;          /* Smooth scrolling */
         width: 100%;                      /* Ensure it takes full width */
         padding-bottom: 10px;             /* Small space at the bottom */
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        justify-content: center; /* pastikan konten rata tengah */
     }
+
+    .tab-content.active::before,
+    .tab-content.active::after {
+        content: "";
+        flex: 0 0 1rem; /* atau bisa juga pakai margin */
+    }
+
 
     .product-container {
         display: flex;
@@ -573,12 +583,15 @@ body {
         margin-right: 20px;            /* Space between product cards */
         max-width: 100%;               /* Ensure product card does not overflow */
         position: relative;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
     }
 
 
     /* Optional: Style the scrollbar */
     .tab-content.active::-webkit-scrollbar {
         height: 8px;
+        display: none;
     }
 
     .tab-content.active::-webkit-scrollbar-thumb {
