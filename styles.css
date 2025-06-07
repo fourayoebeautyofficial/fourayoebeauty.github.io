@@ -614,6 +614,24 @@ body {
         margin-top: 5px; /* Add a little space above */
         padding: 3px 7px; /* Adjust padding for better appearance on mobile */
     }
+
+    .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    .testimonial-card {
+         min-width: 100%;
+         display: block;
+        }
+    .testimonial-card.hidden {
+        display: none;
+    }
+    .testimonial-card {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+    }
 }
 
 /* Media Query for Mobile Devices (Max-width: 480px) */

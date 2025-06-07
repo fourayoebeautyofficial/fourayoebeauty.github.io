@@ -252,3 +252,38 @@ document.addEventListener('DOMContentLoaded', function () {
         // Initialize scroll position (no need to set anything specific here)
     }
 });
+
+let currentIndex = 0;
+    const testimonials = document.querySelectorAll('.testimonial-card');
+    const totalTestimonials = testimonials.length;
+
+    // Function to show the next testimonial
+    function showNextTestimonial() {
+        // Hide current testimonial
+        testimonials[currentIndex].classList.add('hidden');
+        
+        // Update the current index, loop back to the start if needed
+        currentIndex = (currentIndex + 1) % totalTestimonials;
+        
+        // Show the next testimonial
+        testimonials[currentIndex].classList.remove('hidden');
+    }
+
+    // Function to show the previous testimonial
+    function showPreviousTestimonial() {
+        // Hide current testimonial
+        testimonials[currentIndex].classList.add('hidden');
+        
+        // Update the current index, loop back to the last one if needed
+        currentIndex = (currentIndex - 1 + totalTestimonials) % totalTestimonials;
+        
+        // Show the previous testimonial
+        testimonials[currentIndex].classList.remove('hidden');
+    }
+
+    // Show next testimonial every 3 seconds
+    setInterval(showNextTestimonial, 3000); // Adjust time interval as needed
+
+    // Show previous or next when button is clicked
+    document.getElementById('next').addEventListener('click', showNextTestimonial);
+    document.getElementById('prev').addEventListener('click', showPreviousTestimonial);
