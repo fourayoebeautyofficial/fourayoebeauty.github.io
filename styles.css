@@ -374,7 +374,29 @@ body {
 
 /* Styling the hover effect for smooth transition */
 .menu-link:hover i {
-    transform: rotate(45deg); /* Optional: Rotate the icon when hovering */
+    transform: rotate(45deg);
+    /*Optional: Rotate the icon when hovering */;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+}
+
+/* Testimonial Section */
+#testimonials {
+    padding-top: 60px;
+    padding-bottom: 60px;
+    background-color: #F9F9F9;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonial-card {
+    padding: 20px;
+    width: 100%; /* Full width for each testimonial on mobile */
 }
 
 /* Adjust for Larger Screens (MacBook Air Screen Width) */
@@ -479,17 +501,19 @@ body {
         width: 300px;
     }
 
-    /* Testimonials */
-    .testimonial-card {
-        transition: all 0.3s ease;
-        background: white;
-        border-radius: 12px;
-        overflow: hidden;
+    .carousel-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Show 3 testimonials */
+        gap: 20px;
     }
 
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    .testimonial-card {
+        width: 100%; /* Each testimonial takes full space in its grid cell */
+    }
+
+    /* Ensure the content is properly centered */
+    #testimonialCarousel {
+        overflow: hidden;
     }
 }
 
@@ -617,20 +641,57 @@ body {
 
     .carousel-wrapper {
         display: flex;
-        transition: transform 0.5s ease;
+        flex-direction: column; /* Stack testimonials vertically on mobile */
+        gap: 20px;
     }
+
     .testimonial-card {
-         min-width: 100%;
-         display: block;
-        }
-    .testimonial-card.hidden {
+        width: 100%; /* Full width for each testimonial on mobile */
+    }
+
+    #testimonialCarousel {
+        overflow: hidden; /* Hide excess content */
+    }
+
+    .testimonial-slide {
+        flex: 0 0 100%;
+        transition: opacity 0.5s ease;
+    }
+    
+    /* Hide all slides by default */
+    .testimonial-slide {
         display: none;
     }
+    
+    /* Only show active slide */
+    .testimonial-slide.active {
+        display: block;
+    }
+    
+    /* Active dot indicator */
+    .dot-button.active {
+        background-color: #4F46E5; /* Use your primary color */
+    }
     .testimonial-card {
+        display: none;
+    }
+
+    /* Only the active testimonial will be shown */
+    .testimonial-card.active {
+        display: block;
+    }
+
+    .testimonial-card {
+        min-width: 100%;
+        display: block;
         background-color: white;
         border-radius: 8px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease-in-out;
+    }
+
+    .testimonial-slide {
+        flex: 0 0 100%;
     }
 }
 

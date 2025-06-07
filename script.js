@@ -193,17 +193,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Function to enable smooth swiping through products
         const moveToNext = () => {
-          tabContent.scrollBy({
+        tabContent.scrollBy({
             left: productWidth,  // Move to the next product (consider product width + margin)
             behavior: 'smooth',  // Enable smooth scroll
-          });
+        });
         };
 
         const moveToPrevious = () => {
-          tabContent.scrollBy({
+        tabContent.scrollBy({
             left: -productWidth,  // Move to the previous product (negative movement)
             behavior: 'smooth',  // Enable smooth scroll
-          });
+        });
         };
 
         // Swipe functionality to move between products
@@ -211,26 +211,26 @@ document.addEventListener('DOMContentLoaded', function () {
         let swipeEndX = 0;
 
         tabContent.addEventListener('touchstart', (e) => {
-          swipeStartX = e.touches[0].pageX;
+        swipeStartX = e.touches[0].pageX;
         });
 
         tabContent.addEventListener('touchend', (e) => {
-          swipeEndX = e.changedTouches[0].pageX;
+        swipeEndX = e.changedTouches[0].pageX;
 
           // Detect swipe direction (left or right)
           if (swipeStartX - swipeEndX > 50) {  // Swiped left
             moveToNext();
           } else if (swipeEndX - swipeStartX > 50) {  // Swiped right
             moveToPrevious();
-          }
+        }
         });
 
         // Mouse Drag functionality (for desktop users)
         tabContent.addEventListener('mousedown', (e) => {
-          isDown = true;
-          startX = e.pageX - tabContent.offsetLeft;
-          scrollLeft = tabContent.scrollLeft;
-          tabContent.style.transition = 'none';  // Disable transition during dragging
+        isDown = true;
+        startX = e.pageX - tabContent.offsetLeft;
+        scrollLeft = tabContent.scrollLeft;
+        tabContent.style.transition = 'none';  // Disable transition during dragging
         });
 
         tabContent.addEventListener('mouseleave', () => {
@@ -253,37 +253,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-let currentIndex = 0;
-    const testimonials = document.querySelectorAll('.testimonial-card');
-    const totalTestimonials = testimonials.length;
+document.addEventListener("DOMContentLoaded", function() {
+    const carousel = document.getElementById("testimonialCarousel");
+    const carouselWrapper = carousel.querySelector(".carousel-wrapper");
 
-    // Function to show the next testimonial
-    function showNextTestimonial() {
-        // Hide current testimonial
-        testimonials[currentIndex].classList.add('hidden');
-        
-        // Update the current index, loop back to the start if needed
-        currentIndex = (currentIndex + 1) % totalTestimonials;
-        
-        // Show the next testimonial
-        testimonials[currentIndex].classList.remove('hidden');
+    let scrollAmount = 0;
+    const scrollStep = carouselWrapper.firstElementChild.offsetWidth; // Width of one testimonial
+
+    // Function to scroll the carousel
+    function scrollCarousel() {
+        const isMobile = window.innerWidth <= 768;
+        const scrollSize = isMobile ? carouselWrapper.firstElementChild.offsetHeight : scrollStep;
+
+        // Scroll the carousel either horizontally (desktop) or vertically (mobile)
+        if (scrollAmount + scrollSize < carouselWrapper.scrollWidth || scrollAmount + scrollSize < carouselWrapper.scrollHeight) {
+            scrollAmount += scrollSize;
+        } else {
+            scrollAmount = 0; // Reset to the beginning
+        }
+
+        // Apply the transform to create the sliding effect
+        if (isMobile) {
+            carouselWrapper.style.transform = `translateY(-${scrollAmount}px)`; // Vertical slide for mobile
+        } else {
+            carouselWrapper.style.transform = `translateX(-${scrollAmount}px)`; // Horizontal slide for desktop
+        }
     }
 
-    // Function to show the previous testimonial
-    function showPreviousTestimonial() {
-        // Hide current testimonial
-        testimonials[currentIndex].classList.add('hidden');
-        
-        // Update the current index, loop back to the last one if needed
-        currentIndex = (currentIndex - 1 + totalTestimonials) % totalTestimonials;
-        
-        // Show the previous testimonial
-        testimonials[currentIndex].classList.remove('hidden');
-    }
+    // Slide every 3 seconds
+    setInterval(scrollCarousel, 3000);
+});
 
-    // Show next testimonial every 3 seconds
-    setInterval(showNextTestimonial, 3000); // Adjust time interval as needed
-
-    // Show previous or next when button is clicked
-    document.getElementById('next').addEventListener('click', showNextTestimonial);
-    document.getElementById('prev').addEventListener('click', showPreviousTestimonial);
